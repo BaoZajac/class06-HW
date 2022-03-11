@@ -5,6 +5,7 @@ wychowawstwo = {}
 nauczyciele = {}
 klasy = {}
 zbior_nauczycieli = set()
+lista_wszystkich_uczniow = []
 
 
 # wczytanie danych z zewnetrznego pliku i przypisywanie do odpowiednich grup danych
@@ -12,6 +13,7 @@ while True:
     wejscie = input()
     if wejscie == "uczen":
         osoba = input()
+        lista_wszystkich_uczniow.append(osoba)
         klasa_ucznia = input()
         if not klasy.get(klasa_ucznia):
             klasy[klasa_ucznia] = []
@@ -40,8 +42,9 @@ while True:
         break
 
 # print("WYCHOWAWSTWO: ", wychowawstwo)
-# print("NAUCZYCIELE: ", nauczyciele)
-# print("KLASY: ", klasy)
+print("NAUCZYCIELE: ", nauczyciele)
+print("KLASY: ", klasy)
+# print(lista_wszystkich_uczniow)
 
 
 # reakcja na komendę z wejścia standardowego
@@ -58,7 +61,7 @@ if sys.argv[1] in klasy:
             for element in klasy[klucz]:
                 print(element)
 # dla nazwiska wychowawcy
-if sys.argv[1] in wychowawstwo:
+elif sys.argv[1] in wychowawstwo:
     print("DANE DLA WYCHOWAWCY:", sys.argv[1])
     print("Lista uczniów:")
     for wychowawca in wychowawstwo:
@@ -69,7 +72,7 @@ if sys.argv[1] in wychowawstwo:
                         for idx in klasy[dana_klasa]:
                             print(idx)
 # dla nazwiska nauczyciela
-if sys.argv[1] in nauczyciele:
+elif sys.argv[1] in nauczyciele:
     print("DANE DLA NAUCZYCIELA:", sys.argv[1])
     print("Wychowawcy:")
     for nauczyciel in nauczyciele:
@@ -83,6 +86,29 @@ if sys.argv[1] in nauczyciele:
                                     zbior_nauczycieli.add(dany_wychowawca)
     for idx in zbior_nauczycieli:
         print(idx)
+# dla nazwiska ucznia
+elif sys.argv[1] in lista_wszystkich_uczniow:
+    print("DANE DLA UCZNIA:", sys.argv[1])
+    for dana_klasa in klasy:
+        # print(dana_klasa)
+        for dany_uczen in klasy[dana_klasa]:
+            # print(dany_uczen)
+            if dany_uczen == sys.argv[1]:
+                print("dany uczeń to:", dany_uczen)
+                print("należy on do klasy:", dana_klasa)
+                for dany_nauczyciel in nauczyciele:
+                    print(0, dany_nauczyciel)
+                    for konkretna_dana_o_nauczycielu in nauczyciele[dany_nauczyciel]:
+                        print(1, konkretna_dana_o_nauczycielu)
+                        # for dane_klasy in konkretna_dana_o_nauczycielu:
+                        if konkretna_dana_o_nauczycielu == "klasy":
+                            # print(nauczyciele[dany_nauczyciel][konkretna_dana_o_nauczycielu])
+                            print("Bingo")
+    # for klasa in klasy:
+    #     # if sys.argv[1] in klasa:
+    #     for uczen in klasa:
+    #         if sys.argv[1] in klasy[klasa]:
+    #             print("DANE DLA UCZNIA:", sys.argv[1])
 else:
     print(sys.argv[1])
     print("Nie ma takiej klasy")
