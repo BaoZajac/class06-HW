@@ -42,8 +42,8 @@ while True:
         break
 
 # print("WYCHOWAWSTWO: ", wychowawstwo)
-print("NAUCZYCIELE: ", nauczyciele)
-print("KLASY: ", klasy)
+# print("NAUCZYCIELE: ", nauczyciele)
+# print("KLASY: ", klasy)
 # print(lista_wszystkich_uczniow)
 
 
@@ -90,26 +90,20 @@ elif sys.argv[1] in nauczyciele:
 elif sys.argv[1] in lista_wszystkich_uczniow:
     print("DANE DLA UCZNIA:", sys.argv[1])
     for dana_klasa in klasy:
-        # print(dana_klasa)
         for dany_uczen in klasy[dana_klasa]:
-            # print(dany_uczen)
             if dany_uczen == sys.argv[1]:
-                print("dany uczeń to:", dany_uczen)
-                print("należy on do klasy:", dana_klasa)
+                # print("dany uczeń to:", dany_uczen)
+                # print("należy on do klasy:", dana_klasa)
                 for dany_nauczyciel in nauczyciele:
-                    print(0, dany_nauczyciel)
-                    for konkretna_dana_o_nauczycielu in nauczyciele[dany_nauczyciel]:
-                        print(1, konkretna_dana_o_nauczycielu)
-                        # for dane_klasy in konkretna_dana_o_nauczycielu:
-                        if konkretna_dana_o_nauczycielu == "klasy":
-                            # print(nauczyciele[dany_nauczyciel][konkretna_dana_o_nauczycielu])
-                            print("Bingo")
-    # for klasa in klasy:
-    #     # if sys.argv[1] in klasa:
-    #     for uczen in klasa:
-    #         if sys.argv[1] in klasy[klasa]:
-    #             print("DANE DLA UCZNIA:", sys.argv[1])
+                    for dane_o_nauczycielu in nauczyciele[dany_nauczyciel]:
+                        if dane_o_nauczycielu == "klasy":
+                            ktore_klasy = nauczyciele[dany_nauczyciel][dane_o_nauczycielu]
+                            # print(ktore_klasy)
+                            if dana_klasa in ktore_klasy:
+                                print(dany_nauczyciel)
+                        if dane_o_nauczycielu == "przedmiot":
+                            ktory_przedmiot = nauczyciele[dany_nauczyciel][dane_o_nauczycielu]
+                            print(ktory_przedmiot)
 else:
-    print(sys.argv[1])
-    print("Nie ma takiej klasy")
+    print(sys.argv[1], "- brak w bazie szkolnej")
 
