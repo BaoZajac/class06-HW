@@ -4,6 +4,7 @@ import sys
 wychowawstwo = {}
 nauczyciele = {}
 klasy = {}
+zbior_nauczycieli = set()
 
 
 # wczytanie danych z zewnetrznego pliku i przypisywanie do odpowiednich grup danych
@@ -38,9 +39,9 @@ while True:
         print("Błąd")
         break
 
-print("WYCHOWAWSTWO: ", wychowawstwo)
-print("NAUCZYCIELE: ", nauczyciele)
-print("KLASY: ", klasy)
+# print("WYCHOWAWSTWO: ", wychowawstwo)
+# print("NAUCZYCIELE: ", nauczyciele)
+# print("KLASY: ", klasy)
 
 
 # reakcja na komendę z wejścia standardowego
@@ -58,17 +59,30 @@ if sys.argv[1] in klasy:
                 print(element)
 # dla nazwiska wychowawcy
 if sys.argv[1] in wychowawstwo:
-    print("Dane dla wychowawcy:", sys.argv[1])
+    print("DANE DLA WYCHOWAWCY:", sys.argv[1])
     print("Lista uczniów:")
     for wychowawca in wychowawstwo:
-        # print(wychowawca)
         if wychowawca == sys.argv[1]:
             for element in wychowawstwo[wychowawca]:
-                # print(element)
                 for dana_klasa in klasy:
                     if dana_klasa == element:
                         for idx in klasy[dana_klasa]:
                             print(idx)
+# dla nazwiska nauczyciela
+if sys.argv[1] in nauczyciele:
+    print("DANE DLA NAUCZYCIELA:", sys.argv[1])
+    print("Wychowawcy:")
+    for nauczyciel in nauczyciele:
+        if nauczyciel == sys.argv[1]:
+            for dane_nauczyciela in nauczyciele[nauczyciel]:
+                if dane_nauczyciela == "klasy":
+                    for dana_klasa in nauczyciele[nauczyciel][dane_nauczyciela]:
+                        for dany_wychowawca in wychowawstwo:
+                            for element in wychowawstwo[dany_wychowawca]:
+                                if element == dana_klasa:
+                                    zbior_nauczycieli.add(dany_wychowawca)
+    for idx in zbior_nauczycieli:
+        print(idx)
 else:
     print(sys.argv[1])
     print("Nie ma takiej klasy")
