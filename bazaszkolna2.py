@@ -23,36 +23,40 @@ jeśli phrase to uczeń: wypisz wszystkie lekcje, które ma uczeń i nauczycieli
 
 import sys
 
-wychowawstwo = {}
-nauczyciele = {}
-klasy = {}
 
-# def imie_nazwisko():
-#     return input()
+class Uczen:
+    def __init__(self, nazwa, klasa):
+        self.nazwa = nazwa
+        self.klasa = klasa
 
-# lista1 = []
-# print(lista1)
-# lista1.append("tekst")
-# print(lista1)
+
+class Nauczyciel:
+    def __init__(self, przedmiot, klasa):
+        self.przedmiot = przedmiot
+        self.klasa = klasa
+
+    def nauczyciel_klasy(self):
+        while True:
+            nauczyciel_klasy = input()
+            if not nauczyciel_klasy:
+                break
+
+
+def imie_nazwisko():
+    imie_i_nazwisko = input()
+
 
 # wczytanie danych z zewnetrznego pliku
 while True:
     wejscie = input()
     if wejscie == "uczen":
-        osoba = input()
-        klasa_ucznia = input()
-        print("słownik przed rozszerzeniem", klasy)
-        if not klasy.get(klasa_ucznia):
-            klasy[klasa_ucznia] = []
-        klasy[klasa_ucznia].append(osoba)
-        print(klasy)
+        dane_uczen = Uczen(imie_nazwisko(), input())
+        print(dane_uczen)
     if wejscie == "nauczyciel":
         imie_nazwisko()
-        przedmiot = input()
-        while True:
-            nauczyciel_klasy = input()
-            if not nauczyciel_klasy:
-                continue
+        dane_nauczyciel = Nauczyciel(input())
+
+
     if wejscie == "wychowawca":
         imie_nazwisko()
         while True:
@@ -61,5 +65,30 @@ while True:
                 continue
     if wejscie == "koniec":
         break
-    # else:
-    #     continue    #TODO: czy to jest konieczne? może być przydatne, gdy mamy puste linie - sprawdzić
+    else:
+        continue    #TODO: czy to jest konieczne? może być przydatne, gdy mamy puste linie - sprawdzić
+
+
+# # wczytanie danych z zewnetrznego pliku
+# while True:
+#     wejscie = input()
+#     if wejscie == "uczen":
+#         imie_nazwisko()
+#         uczen_klasa = input()
+#     if wejscie == "nauczyciel":
+#         imie_nazwisko()
+#         przedmiot = input()
+#         while True:
+#             nauczyciel_klasy = input()
+#             if not nauczyciel_klasy:
+#                 continue
+#     if wejscie == "wychowawca":
+#         imie_nazwisko()
+#         while True:
+#             ktore_klasy = input()
+#             if not ktore_klasy:
+#                 continue
+#     if wejscie == "koniec":
+#         break
+#     else:
+#         continue    #TODO: czy to jest konieczne? może być przydatne, gdy mamy puste linie - sprawdzić
