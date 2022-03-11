@@ -27,39 +27,39 @@ wychowawstwo = {}
 nauczyciele = {}
 klasy = {}
 
-# def imie_nazwisko():
-#     return input()
 
-# lista1 = []
-# print(lista1)
-# lista1.append("tekst")
-# print(lista1)
-
-# wczytanie danych z zewnetrznego pliku
+# wczytanie danych z zewnetrznego pliku i przypisywanie do odpowiednich grup danych
 while True:
     wejscie = input()
     if wejscie == "uczen":
         osoba = input()
         klasa_ucznia = input()
-        print("słownik przed rozszerzeniem", klasy)
         if not klasy.get(klasa_ucznia):
             klasy[klasa_ucznia] = []
         klasy[klasa_ucznia].append(osoba)
-        print(klasy)
-    if wejscie == "nauczyciel":
-        imie_nazwisko()
+    elif wejscie == "nauczyciel":
+        osoba = input()
         przedmiot = input()
+        nauczyciele[osoba] = {"przedmiot": przedmiot, "klasy":[]}
         while True:
-            nauczyciel_klasy = input()
-            if not nauczyciel_klasy:
-                continue
-    if wejscie == "wychowawca":
-        imie_nazwisko()
+            klasy_nauczyciela = input()
+            if not klasy_nauczyciela:
+                break
+            nauczyciele[osoba]["klasy"].append(klasy_nauczyciela)
+    elif wejscie == "wychowawca":
+        osoba = input()
+        wychowawstwo[osoba] = []
         while True:
-            ktore_klasy = input()
-            if not ktore_klasy:
-                continue
-    if wejscie == "koniec":
+            klasy_wychowawcy = input()
+            if not klasy_wychowawcy:
+                break
+            wychowawstwo[osoba].append(klasy_wychowawcy)
+    elif wejscie == "koniec":
         break
-    # else:
-    #     continue    #TODO: czy to jest konieczne? może być przydatne, gdy mamy puste linie - sprawdzić
+    else:
+        print("Błąd")
+        break
+
+print("WYCHOWAWSTWO: ", wychowawstwo)
+print("NAUCZYCIELE: ", nauczyciele)
+print("KLASY: ", klasy)
