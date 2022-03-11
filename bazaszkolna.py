@@ -39,5 +39,18 @@ while True:
         break
 
 print("WYCHOWAWSTWO: ", wychowawstwo)
-print("NAUCZYCIELE: ", nauczyciele)
-print("KLASY: ", klasy)
+# print("NAUCZYCIELE: ", nauczyciele)
+# print("KLASY: ", klasy)
+
+
+# reakcja na komendę z wejścia standardowego
+if sys.argv[1] in klasy:
+    print("Dane dla klasy {}:".format(sys.argv[1]))
+    for klucz in wychowawstwo:
+        for konkretna_klasa in wychowawstwo[klucz]:
+            if sys.argv[1] in konkretna_klasa:
+                print("Wychowawca:", klucz)
+else:
+    print(sys.argv[1])
+    print("Nie ma takiej klasy")
+
