@@ -39,17 +39,36 @@ while True:
         break
 
 print("WYCHOWAWSTWO: ", wychowawstwo)
-# print("NAUCZYCIELE: ", nauczyciele)
-# print("KLASY: ", klasy)
+print("NAUCZYCIELE: ", nauczyciele)
+print("KLASY: ", klasy)
 
 
 # reakcja na komendę z wejścia standardowego
+# dla nazwy klasy
 if sys.argv[1] in klasy:
-    print("Dane dla klasy {}:".format(sys.argv[1]))
+    print("DANE DLA KLASY \"{}\":".format(sys.argv[1]))
     for klucz in wychowawstwo:
         for konkretna_klasa in wychowawstwo[klucz]:
             if sys.argv[1] in konkretna_klasa:
                 print("Wychowawca:", klucz)
+    for klucz in klasy:
+        if klucz == sys.argv[1]:
+            print("Lista uczniów:")
+            for element in klasy[klucz]:
+                print(element)
+# dla nazwiska wychowawcy
+if sys.argv[1] in wychowawstwo:
+    print("Dane dla wychowawcy:", sys.argv[1])
+    print("Lista uczniów:")
+    for wychowawca in wychowawstwo:
+        # print(wychowawca)
+        if wychowawca == sys.argv[1]:
+            for element in wychowawstwo[wychowawca]:
+                # print(element)
+                for dana_klasa in klasy:
+                    if dana_klasa == element:
+                        for idx in klasy[dana_klasa]:
+                            print(idx)
 else:
     print(sys.argv[1])
     print("Nie ma takiej klasy")
